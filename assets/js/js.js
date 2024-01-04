@@ -1,5 +1,11 @@
 const canvas = document.getElementById('particle-canvas')
-const ctx = canvas.getContext('2d')
+
+let ctx;
+
+if(document.querySelector('canvas')) {
+    ctx = canvas.getContext('2d')
+}
+
 const particles = []
 
 // Detect screen width to determine whether it's a desktop or mobile
@@ -13,8 +19,11 @@ if (screenWidth >= 950) { // You can adjust this threshold as needed
     numParticles = 180 // For mobile screen size
 }
 
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
+if(document.querySelector('canvas')) {
+
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+}
 
 class Particle {
     constructor(x, y) {
@@ -102,7 +111,7 @@ function resizeCanvas() {
     canvas.height = window.innerHeight
 }
 
-window.addEventListener('resize', resizeCanvas)
+
 
 // Handle mouse interaction
 const mouse = {
@@ -121,9 +130,11 @@ window.addEventListener('mouseout', () => {
     mouse.y = undefined
 })
 
-
-createParticles()
-animate()
+if(document.querySelector('canvas')) {
+    window.addEventListener('resize', resizeCanvas)
+    createParticles()
+    animate()
+}
 
 
 
@@ -264,13 +275,16 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     checkBtns()
 }
 
+if(document.querySelector('.slider-container-sale')) {
 
-sliderMore('.slider-container-lifestyle', '.lifestyle-slider-track', '.prev-lifestyle', '.next-lifestyle', '.box-item')
+    sliderMore('.slider-container-sale', '.sale-slider-track', '.prev-sale', '.next-sale', '.sale-slide')
 
-sliderMore('.slider-container-sale', '.sale-slider-track', '.prev-sale', '.next-sale', '.sale-slide')
+    sliderMore('.slider-container-rent', '.rent-slider-track', '.prev-rent', '.next-rent', '.rent-slide')
+}
 
-sliderMore('.slider-container-rent', '.rent-slider-track', '.prev-rent', '.next-rent', '.rent-slide')
-
+if(document.querySelector('.slider-container-lifestyle')) {
+    sliderMore('.slider-container-lifestyle', '.lifestyle-slider-track', '.prev-lifestyle', '.next-lifestyle', '.box-item')
+}
 
 function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow, prevBtn, nextBtn) {
 
@@ -470,11 +484,18 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
     })
 }
 
+if(document.querySelector('.slider-featured')) {
+
+    sliderCont('.slider-featured', '.featured-slider-list', '.featured-slider-track', '.featured-inner', '.featured-arrow', '.prev-featured', '.next-featured')
+
+    sliderCont('.slider-news', '.news-slider-list', '.news-slider-track', '.news-inner', '.news-arrow', '.prev-news', '.next-news')
+}
 
 
-sliderCont('.slider-featured', '.featured-slider-list', '.featured-slider-track', '.featured-inner', '.featured-arrow', '.prev-featured', '.next-featured')
-sliderCont('.slider-news', '.news-slider-list', '.news-slider-track', '.news-inner', '.news-arrow', '.prev-news', '.next-news')
-
+if(document.querySelector('.slider-area')) {   
+    sliderCont('.slider-area', '.area-slider-list', '.area-slider-track', '.area-wrapper', '.area-arrow', '.prev-area', '.next-area')
+}
+    
 const debounce = (callback, delay) => {
     let timeout = null
 
@@ -504,9 +525,12 @@ const debouncedResize = debounce(
     50
 )
 
-debouncedResize()
+if(document.querySelector('.home-service-track')) {
+    debouncedResize()
+    window.addEventListener('resize', debouncedResize)
+}
 
-window.addEventListener('resize', debouncedResize)
+
 
 
 // Accordion
@@ -555,12 +579,57 @@ const accordion = (triggersSelector) => {
 
 }
 
-accordion('.faq-heading')
+if(document.querySelector('.faq-heading')) {
+    accordion('.faq-heading')    
+}
 
 
 
 
+// Tabs
+const filter = () => {
+    const menu = document.querySelector('.portfolio-menu')
+    const items = document.querySelectorAll('.portfolio-item');
 
+    const wrapper = document.querySelector('.portfolio-wrapper');
+    const mapOne = wrapper.querySelectorAll('.all');
+  
+
+    const typeFilter = (markType) => {
+        mapOne.forEach(elem => {
+
+            elem.style.display = 'none'
+            elem.classList.remove('animated', 'fadeIn')
+        })
+            
+        if (markType) {
+            markType.forEach(mark => {
+                mark.style.display = 'block';
+                mark.classList.add('animated', 'fadeIn')
+            })
+        }
+    }
+
+    menu.addEventListener('click', (e) => {
+        let classSelect = e.target.classList[0]
+        let allElems = wrapper.querySelectorAll(`.${classSelect}`)
+        typeFilter(allElems)
+    })
+
+    menu.addEventListener('click', (e) => {
+        let target = e.target;
+
+        if (target && target.tagName === 'LI') {
+            items.forEach(btn => btn.classList.remove('active'))
+            target.classList.add('active')
+        }
+    })
+}
+
+
+if(document.querySelector('.area_map')) {   
+    filter()
+}
 
 
 
