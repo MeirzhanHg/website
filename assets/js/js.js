@@ -229,7 +229,7 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     const movePosition = slidesToScroll * itemWidth;
 
     items.forEach((item) => {
-        item.style.minWidth = `${itemWidth - 9}px`; 
+        item.style.minWidth = `${itemWidth - 15}px`; 
     });
 
     btnNext.addEventListener('click', () => {
@@ -473,7 +473,7 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
 
 
 sliderCont('.slider-featured', '.featured-slider-list', '.featured-slider-track', '.featured-inner', '.featured-arrow', '.prev-featured', '.next-featured')
-sliderCont('.slider-news', '.news-slider-list', '.news-slider-track', '.news-items', '.news-arrow', '.prev-news', '.next-news')
+sliderCont('.slider-news', '.news-slider-list', '.news-slider-track', '.news-inner', '.news-arrow', '.prev-news', '.next-news')
 
 const debounce = (callback, delay) => {
     let timeout = null
