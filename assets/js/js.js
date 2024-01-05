@@ -305,10 +305,12 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
         posY1 = 0,
         posY2 = 0,
         posFinal = 0,
+
         isSwipe = false,
         isScroll = false,
         allowSwipe = true,
         transition = true,
+        
         nextTrf = 0,
         prevTrf = 0,
         lastTrf = --slides.length * slideWidth,
