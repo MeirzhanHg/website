@@ -2482,6 +2482,163 @@ canvas {
    }
 }
 
+/* lifestyle */
+.lifestyle {
+   padding: 120px 0;
+
+   background-color: #03101f;
+}
+
+.lifestyle_body {
+   margin-top: 100px;
+}
+
+.lifestyle_title {
+   color: #48faff;
+   font-weight: 200;
+   font-size: 80px;
+}
+
+.lifestyle_text {
+   font-size: 29px;
+   color: #d9d9d9;
+}
+
+.lifestyle_top {
+   margin-top: 30px;
+   display: flex;
+}
+.lifestyle_item {
+   flex: 0 1 30%;
+}
+.lifestyle_video {
+   flex: 1 1 auto;
+   position: relative;
+   padding: 0px 0px 40% 0px;
+}
+
+.lifestyle_bottom {
+   display: flex;
+}
+
+.lifestyle_bottom-item {
+   flex: 0 1 50%;
+}
+
+.lifestyle_bottom-text {
+   position: relative;
+   z-index: 2;
+   margin-top: -80px;
+   border-radius: 40px;
+   padding: 50px;
+   background-color: #03101f;
+   color: #d9d9d9;
+   font-size: 24px;
+}
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 900px) {
+   .lifestyle {
+      padding: 80px 0;
+   }
+   .lifestyle_body {
+      margin-top: 40px;
+   }
+   .lifestyle_text {
+      font-size: 20px;
+   }
+   .lifestyle_title {
+      font-size: 64px;
+   }
+   .lifestyle_top {
+      flex-wrap: wrap;
+   }
+   .lifestyle_item {
+      flex: 1 1 100%;
+   }
+   .lifestyle_video {
+      flex: 1 1 100%;
+   }
+
+   .lifestyle_bottom {
+      flex-wrap: wrap;
+   }
+   .lifestyle_bottom-item {
+      flex: 1 1 100%;
+   }
+   .lifestyle_bottom-text {
+      margin-top: 0px;
+      border-radius: 20px;
+      padding: 25px;
+      font-size: 18px;
+   }
+}
+@media (max-width: 700px) {
+   .lifestyle {
+      padding: 50px 0;
+   }
+   .lifestyle_title {
+      font-size: 34px;
+   }
+   .lifestyle_text {
+      font-size: 18px;
+   }
+   .lifestyle_bottom-text {
+      padding: 10px;
+   }
+   .featured-video {
+      border-radius: 15px;
+   }
+}
+
+/* lifestyle-object */
+.objects {
+   padding: 120px 0;
+}
+
+.objects_items {
+   display: flex;
+   flex-wrap: wrap;
+   margin: 0 -10px;
+}
+
+.objects_item {
+   flex: 1 1 33.3333%;
+   padding: 0 10px;
+   margin-bottom: 20px;
+}
+
+.objects_info {
+   display: flex;
+   flex-direction: column;
+   justify-content: start;
+   background-color: #0e192b;
+   border-radius: 30px;
+   cursor: grab;
+   text-decoration: none;
+   padding: 15px;
+   border: 1px solid #1f2d49;
+}
+
+@media (max-width: 900px) {
+   .objects {
+      padding: 80px 0;
+   }
+   .objects_item {
+      flex: 1 1 50%;
+   }
+}
+
+@media (max-width: 700px) {
+   .objects {
+      padding: 50px 0;
+   }
+   .objects_item {
+      flex: 1 1 100%;
+   }
+}
+
 /* Slider */
 
 .slider-list {
