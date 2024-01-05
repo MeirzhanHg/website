@@ -1,8 +1,8 @@
 const canvas = document.getElementById('particle-canvas')
 
-let ctx;
+let ctx
 
-if(document.querySelector('canvas')) {
+if (document.querySelector('canvas')) {
     ctx = canvas.getContext('2d')
 }
 
@@ -19,7 +19,7 @@ if (screenWidth >= 950) { // You can adjust this threshold as needed
     numParticles = 180 // For mobile screen size
 }
 
-if(document.querySelector('canvas')) {
+if (document.querySelector('canvas')) {
 
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
@@ -130,7 +130,7 @@ window.addEventListener('mouseout', () => {
     mouse.y = undefined
 })
 
-if(document.querySelector('canvas')) {
+if (document.querySelector('canvas')) {
     window.addEventListener('resize', resizeCanvas)
     createParticles()
     animate()
@@ -216,18 +216,18 @@ const sliders = (slides, dir, prev, next) => {
 
 function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders) {
 
-    let position = 0;
-    let slidesToShow = 3;
+    let position = 0
+    let slidesToShow = 3
 
-    if(window.innerWidth <= 1100) {
-        slidesToShow = 2;
-    } 
+    if (window.innerWidth <= 1100) {
+        slidesToShow = 2
+    }
 
-    if(window.innerWidth <= 600) {
-        slidesToShow = 1;
-    } 
+    if (window.innerWidth <= 600) {
+        slidesToShow = 1
+    }
 
-    const slidesToScroll = 1;
+    const slidesToScroll = 1
     const container = document.querySelector(containerSlider)
     const track = document.querySelector(trackSlider)
 
@@ -236,16 +236,16 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     const items = document.querySelectorAll(sliders)
 
     const itemsCount = items.length
-    const itemWidth= container.clientWidth / slidesToShow
-    const movePosition = slidesToScroll * itemWidth;
+    const itemWidth = container.clientWidth / slidesToShow
+    const movePosition = slidesToScroll * itemWidth
 
     items.forEach((item) => {
-        item.style.minWidth = `${itemWidth - 15}px`; 
-    });
+        item.style.minWidth = `${itemWidth - 15}px`
+    })
 
     btnNext.addEventListener('click', () => {
         const itemsLeft = itemsCount - (Math.abs(position) + slidesToShow * itemWidth) / itemWidth
-    
+
         position -= itemsLeft >= slidesToScroll ? movePosition : itemsLeft * itemWidth
 
         setPosition()
@@ -255,7 +255,7 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
 
     btnPrev.addEventListener('click', () => {
 
-        const itemsLeft = Math.abs(position) / itemWidth;
+        const itemsLeft = Math.abs(position) / itemWidth
 
         position += itemsLeft >= slidesToScroll ? movePosition : itemsLeft * itemWidth
 
@@ -275,14 +275,14 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     checkBtns()
 }
 
-if(document.querySelector('.slider-container-sale')) {
+if (document.querySelector('.slider-container-sale')) {
 
     sliderMore('.slider-container-sale', '.sale-slider-track', '.prev-sale', '.next-sale', '.sale-slide')
 
     sliderMore('.slider-container-rent', '.rent-slider-track', '.prev-rent', '.next-rent', '.rent-slide')
 }
 
-if(document.querySelector('.slider-container-lifestyle')) {
+if (document.querySelector('.slider-container-lifestyle')) {
     sliderMore('.slider-container-lifestyle', '.lifestyle-slider-track', '.prev-lifestyle', '.next-lifestyle', '.box-item')
 }
 
@@ -325,7 +325,7 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
             if (transition) {
                 sliderTrack.style.transition = 'transform .5s'
             }
-            sliderTrack.style.transform = `translate3d(-${slideIndex * slideWidth }px, 0px, 0px)`
+            sliderTrack.style.transform = `translate3d(-${slideIndex * slideWidth}px, 0px, 0px)`
 
             prev.classList.toggle('disabled', slideIndex === 0)
             next.classList.toggle('disabled', slideIndex === --slides.length)
@@ -484,7 +484,7 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
     })
 }
 
-if(document.querySelector('.slider-featured')) {
+if (document.querySelector('.slider-featured')) {
 
     sliderCont('.slider-featured', '.featured-slider-list', '.featured-slider-track', '.featured-inner', '.featured-arrow', '.prev-featured', '.next-featured')
 
@@ -492,10 +492,10 @@ if(document.querySelector('.slider-featured')) {
 }
 
 
-if(document.querySelector('.slider-area')) {   
+if (document.querySelector('.slider-area')) {
     sliderCont('.slider-area', '.area-slider-list', '.area-slider-track', '.area-wrapper', '.area-arrow', '.prev-area', '.next-area')
 }
-    
+
 const debounce = (callback, delay) => {
     let timeout = null
 
@@ -525,7 +525,7 @@ const debouncedResize = debounce(
     50
 )
 
-if(document.querySelector('.home-service-track')) {
+if (document.querySelector('.home-service-track')) {
     debouncedResize()
     window.addEventListener('resize', debouncedResize)
 }
@@ -564,10 +564,10 @@ const accordion = (triggersSelector) => {
         })
 
         btns.forEach(btn => {
-       
-            
+
+
             if (btn.classList.contains('active-style')) {
-                console.log('aaa');
+                console.log('aaa')
                 btn.nextElementSibling.style.maxHeight = btn.nextElementSibling.scrollHeight + 80 + 'px'
             } else {
                 btn.nextElementSibling.style.maxHeight = '0px'
@@ -579,21 +579,21 @@ const accordion = (triggersSelector) => {
 
 }
 
-if(document.querySelector('.faq-heading')) {
-    accordion('.faq-heading')    
+if (document.querySelector('.faq-heading')) {
+    accordion('.faq-heading')
 }
 
 
 
 
-// Tabs
+// Tabs Page CP Area
 const filter = () => {
     const menu = document.querySelector('.portfolio-menu')
-    const items = document.querySelectorAll('.portfolio-item');
+    const items = document.querySelectorAll('.portfolio-item')
 
-    const wrapper = document.querySelector('.portfolio-wrapper');
-    const mapOne = wrapper.querySelectorAll('.all');
-  
+    const wrapper = document.querySelector('.portfolio-wrapper')
+    const mapOne = wrapper.querySelectorAll('.all')
+
 
     const typeFilter = (markType) => {
         mapOne.forEach(elem => {
@@ -601,10 +601,10 @@ const filter = () => {
             elem.style.display = 'none'
             elem.classList.remove('animated', 'fadeIn')
         })
-            
+
         if (markType) {
             markType.forEach(mark => {
-                mark.style.display = 'block';
+                mark.style.display = 'block'
                 mark.classList.add('animated', 'fadeIn')
             })
         }
@@ -617,7 +617,7 @@ const filter = () => {
     })
 
     menu.addEventListener('click', (e) => {
-        let target = e.target;
+        let target = e.target
 
         if (target && target.tagName === 'LI') {
             items.forEach(btn => btn.classList.remove('active'))
@@ -627,9 +627,7 @@ const filter = () => {
 }
 
 
-if(document.querySelector('.area_map')) {   
+if (document.querySelector('.area_map')) {
     filter()
 }
-
-
 
