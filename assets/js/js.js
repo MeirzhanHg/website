@@ -496,6 +496,11 @@ if (document.querySelector('.slider-area')) {
     sliderCont('.slider-area', '.area-slider-list', '.area-slider-track', '.area-wrapper', '.area-arrow', '.prev-area', '.next-area')
 }
 
+if (document.querySelector('.slider_service')) {
+    sliderCont('.slider_service', '.slider-service-list', '.slider-service-track', '.other-inner', '.service-arrow', '.prev-service', '.next-service')
+}
+
+
 const debounce = (callback, delay) => {
     let timeout = null
 
