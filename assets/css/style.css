@@ -1779,7 +1779,7 @@ canvas {
 .footer {
    color: #fff;
    padding: 100px 0;
-   background: url("/assets/images/listing/2.jpg") 0 0 / cover no-repeat;
+   background: url("assets/images/listing/2.jpg") 0 0 / cover no-repeat;
 }
 
 .footer-inner {
