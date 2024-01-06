@@ -245,9 +245,9 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     // let startX = 0;
     // let endX = 0;
 
-    
+
     // let slideThreshold = 50; // Adjust this value as needed
-    
+
     // if (window.innerWidth <= 600) {
     //     slideThreshold = Math.abs(touchStartX - touchEndX)
     // }
@@ -256,38 +256,38 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     //     console.log(slideThreshold);
     //     touchStartX = event.touches[0].clientX;
     // });
-    
+
     // track.addEventListener('touchmove', (event) => {
     //     console.log(slideThreshold);
     //     touchEndX = event.touches[0].clientX;
     //     handleSwipe();
     // });
-    
+
     // track.addEventListener('touchend', () => {
     //     handleSwipeEnd();
     // });
-    
+
     // track.addEventListener('mousedown', (event) => {
     //     isDragging = true;
     //     startX = event.clientX;
     //     track.style.cursor = 'grabbing';
     // });
-    
+
     // track.addEventListener('mousemove', (event) => {
     //     if (!isDragging) return;
     //     endX = event.clientX;
     //     handleDrag();
     // });
-    
+
     // track.addEventListener('mouseup', () => {
     //     isDragging = false;
     //     handleSwipeEnd();
     //     track.style.cursor = 'grab';
     // });
-    
+
     // function handleSwipe() {
     //     const swipeDistance = touchStartX - touchEndX;
-    
+
     //     if (Math.abs(swipeDistance) > slideThreshold) {
     //         if (touchStartX > touchEndX) {
     //             // Swipe left, move to next slide
@@ -298,14 +298,14 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     //         }
     //     }
     // }
-    
+
     // function handleSwipeEnd() {
     //     isDragging = false;
     //     startX = 0;
     //     endX = 0;
     //     track.style.cursor = 'grab';
     // }
-    
+
     // function handleDrag() {
     //     const dragDistance = endX - startX;
     //     if (Math.abs(dragDistance) > slideThreshold) {
@@ -316,11 +316,11 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     //             // Drag right, move to previous slide
     //             moveSlide('prev');
     //         }
-    
+
     //         startX = endX;
     //     }
     // }
-    
+
 
     let touchStartX = 0
     let touchEndX = 0
@@ -328,7 +328,7 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
 
     track.addEventListener('touchstart', (event) => {
         touchStartX = event.touches[0].clientX
-        console.log(touchStartX);
+        console.log(touchStartX)
     })
 
     track.addEventListener('touchend', (event) => {
@@ -354,7 +354,7 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     }
 
     function moveSlide(direction) {
- 
+
         if (direction === 'next') {
             position -= movePosition
             position = Math.max(position, -(itemsCount - slidesToShow) * itemWidth)
@@ -794,5 +794,22 @@ const filter = () => {
 
 if (document.querySelector('.area_map')) {
     filter()
+}
+
+
+if (document.querySelector('video')) {
+    var myVideo = document.querySelectorAll("video")
+
+    function playPause() {
+        myVideo.forEach(video => {
+            if (video.paused) {
+                video.play()
+            } else {
+                video.pause()
+            }
+        })
+    }
+
+    playPause()
 }
 
