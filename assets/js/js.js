@@ -239,119 +239,119 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     const movePosition = slidesToScroll * itemWidth
 
     // ..............................
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let isDragging = false;
-    let startX = 0;
-    let endX = 0;
+    // let touchStartX = 0;
+    // let touchEndX = 0;
+    // let isDragging = false;
+    // let startX = 0;
+    // let endX = 0;
 
     
-    let slideThreshold = 50; // Adjust this value as needed
+    // let slideThreshold = 50; // Adjust this value as needed
     
-    if (window.innerWidth <= 600) {
-        slideThreshold = 30
-    }
-
-    track.addEventListener('touchstart', (event) => {
-        console.log(slideThreshold);
-        touchStartX = event.touches[0].clientX;
-    });
-    
-    track.addEventListener('touchmove', (event) => {
-        console.log(slideThreshold);
-        touchEndX = event.touches[0].clientX;
-        handleSwipe();
-    });
-    
-    track.addEventListener('touchend', () => {
-        handleSwipeEnd();
-    });
-    
-    track.addEventListener('mousedown', (event) => {
-        isDragging = true;
-        startX = event.clientX;
-        track.style.cursor = 'grabbing';
-    });
-    
-    track.addEventListener('mousemove', (event) => {
-        if (!isDragging) return;
-        endX = event.clientX;
-        handleDrag();
-    });
-    
-    track.addEventListener('mouseup', () => {
-        isDragging = false;
-        handleSwipeEnd();
-        track.style.cursor = 'grab';
-    });
-    
-    function handleSwipe() {
-        const swipeDistance = touchStartX - touchEndX;
-    
-        if (Math.abs(swipeDistance) > slideThreshold) {
-            if (touchStartX > touchEndX) {
-                // Swipe left, move to next slide
-                moveSlide('next');
-            } else {
-                // Swipe right, move to previous slide
-                moveSlide('prev');
-            }
-        }
-    }
-    
-    function handleSwipeEnd() {
-        isDragging = false;
-        startX = 0;
-        endX = 0;
-        track.style.cursor = 'grab';
-    }
-    
-    function handleDrag() {
-        const dragDistance = endX - startX;
-        if (Math.abs(dragDistance) > slideThreshold) {
-            if (dragDistance < 0) {
-                // Drag left, move to next slide
-                moveSlide('next');
-            } else {
-                // Drag right, move to previous slide
-                moveSlide('prev');
-            }
-    
-            startX = endX;
-        }
-    }
-    
-
-    // let touchStartX = 0
-    // let touchEndX = 0
-
+    // if (window.innerWidth <= 600) {
+    //     slideThreshold = Math.abs(touchStartX - touchEndX)
+    // }
 
     // track.addEventListener('touchstart', (event) => {
-    //     touchStartX = event.touches[0].clientX
-    //     console.log(touchStartX);
-    // })
-
-    // track.addEventListener('touchend', (event) => {
-    //     touchEndX = event.changedTouches[0].clientX
-    //     handleSwipe()
-    // })
-
+    //     console.log(slideThreshold);
+    //     touchStartX = event.touches[0].clientX;
+    // });
+    
+    // track.addEventListener('touchmove', (event) => {
+    //     console.log(slideThreshold);
+    //     touchEndX = event.touches[0].clientX;
+    //     handleSwipe();
+    // });
+    
+    // track.addEventListener('touchend', () => {
+    //     handleSwipeEnd();
+    // });
+    
+    // track.addEventListener('mousedown', (event) => {
+    //     isDragging = true;
+    //     startX = event.clientX;
+    //     track.style.cursor = 'grabbing';
+    // });
+    
+    // track.addEventListener('mousemove', (event) => {
+    //     if (!isDragging) return;
+    //     endX = event.clientX;
+    //     handleDrag();
+    // });
+    
+    // track.addEventListener('mouseup', () => {
+    //     isDragging = false;
+    //     handleSwipeEnd();
+    //     track.style.cursor = 'grab';
+    // });
+    
     // function handleSwipe() {
-    //     const swipeThreshold = Math.abs(touchStartX - touchEndX)
-
-    //     if (swipeThreshold < 50) {
-    //         // Consider it as a tap or negligible swipe
-    //         return
-    //     }
-
-    //     if (touchStartX > touchEndX) {
-    //         // Swipe left, move to next slide
-    //         moveSlide('next')
-    //     } else {
-    //         // Swipe right, move to previous slide
-    //         moveSlide('prev')
+    //     const swipeDistance = touchStartX - touchEndX;
+    
+    //     if (Math.abs(swipeDistance) > slideThreshold) {
+    //         if (touchStartX > touchEndX) {
+    //             // Swipe left, move to next slide
+    //             moveSlide('next');
+    //         } else {
+    //             // Swipe right, move to previous slide
+    //             moveSlide('prev');
+    //         }
     //     }
     // }
+    
+    // function handleSwipeEnd() {
+    //     isDragging = false;
+    //     startX = 0;
+    //     endX = 0;
+    //     track.style.cursor = 'grab';
+    // }
+    
+    // function handleDrag() {
+    //     const dragDistance = endX - startX;
+    //     if (Math.abs(dragDistance) > slideThreshold) {
+    //         if (dragDistance < 0) {
+    //             // Drag left, move to next slide
+    //             moveSlide('next');
+    //         } else {
+    //             // Drag right, move to previous slide
+    //             moveSlide('prev');
+    //         }
+    
+    //         startX = endX;
+    //     }
+    // }
+    
+
+    let touchStartX = 0
+    let touchEndX = 0
+
+
+    track.addEventListener('touchstart', (event) => {
+        touchStartX = event.touches[0].clientX
+        console.log(touchStartX);
+    })
+
+    track.addEventListener('touchend', (event) => {
+        touchEndX = event.changedTouches[0].clientX
+        handleSwipe()
+    })
+
+    function handleSwipe() {
+        const swipeThreshold = Math.abs(touchStartX - touchEndX)
+
+        if (swipeThreshold < 50) {
+            // Consider it as a tap or negligible swipe
+            return
+        }
+
+        if (touchStartX > touchEndX) {
+            // Swipe left, move to next slide
+            moveSlide('next')
+        } else {
+            // Swipe right, move to previous slide
+            moveSlide('prev')
+        }
+    }
 
     function moveSlide(direction) {
  
