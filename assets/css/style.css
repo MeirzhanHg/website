@@ -2067,6 +2067,9 @@ canvas {
 }
 
 @media (max-width: 700px) {
+   .area-item-text {
+      flex: 1 1 100%;
+   }
    .area-body {
       margin-top: 30px;
    }
@@ -2078,7 +2081,7 @@ canvas {
       padding: 20px;
    }
    .area-img {
-      height: 350px;
+      height: 250px;
    }
    .area-intro {
       padding: 50px 0;
