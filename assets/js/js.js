@@ -218,14 +218,13 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
 
     let position = 0
     let slidesToShow = 3
-
     if (window.innerWidth <= 1100) {
         slidesToShow = 2
     }
-
     if (window.innerWidth <= 600) {
         slidesToShow = 1
     }
+
 
     const slidesToScroll = 1
     const container = document.querySelector(containerSlider)
@@ -238,6 +237,137 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     const itemsCount = items.length
     const itemWidth = container.clientWidth / slidesToShow
     const movePosition = slidesToScroll * itemWidth
+
+    // ..............................
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isDragging = false;
+    let startX = 0;
+    let endX = 0;
+
+    
+    let slideThreshold = 50; // Adjust this value as needed
+    
+    if (window.innerWidth <= 600) {
+        slideThreshold = 30
+    }
+
+    track.addEventListener('touchstart', (event) => {
+        console.log(slideThreshold);
+        touchStartX = event.touches[0].clientX;
+    });
+    
+    track.addEventListener('touchmove', (event) => {
+        console.log(slideThreshold);
+        touchEndX = event.touches[0].clientX;
+        handleSwipe();
+    });
+    
+    track.addEventListener('touchend', () => {
+        handleSwipeEnd();
+    });
+    
+    track.addEventListener('mousedown', (event) => {
+        isDragging = true;
+        startX = event.clientX;
+        track.style.cursor = 'grabbing';
+    });
+    
+    track.addEventListener('mousemove', (event) => {
+        if (!isDragging) return;
+        endX = event.clientX;
+        handleDrag();
+    });
+    
+    track.addEventListener('mouseup', () => {
+        isDragging = false;
+        handleSwipeEnd();
+        track.style.cursor = 'grab';
+    });
+    
+    function handleSwipe() {
+        const swipeDistance = touchStartX - touchEndX;
+    
+        if (Math.abs(swipeDistance) > slideThreshold) {
+            if (touchStartX > touchEndX) {
+                // Swipe left, move to next slide
+                moveSlide('next');
+            } else {
+                // Swipe right, move to previous slide
+                moveSlide('prev');
+            }
+        }
+    }
+    
+    function handleSwipeEnd() {
+        isDragging = false;
+        startX = 0;
+        endX = 0;
+        track.style.cursor = 'grab';
+    }
+    
+    function handleDrag() {
+        const dragDistance = endX - startX;
+        if (Math.abs(dragDistance) > slideThreshold) {
+            if (dragDistance < 0) {
+                // Drag left, move to next slide
+                moveSlide('next');
+            } else {
+                // Drag right, move to previous slide
+                moveSlide('prev');
+            }
+    
+            startX = endX;
+        }
+    }
+    
+
+    // let touchStartX = 0
+    // let touchEndX = 0
+
+
+    // track.addEventListener('touchstart', (event) => {
+    //     touchStartX = event.touches[0].clientX
+    //     console.log(touchStartX);
+    // })
+
+    // track.addEventListener('touchend', (event) => {
+    //     touchEndX = event.changedTouches[0].clientX
+    //     handleSwipe()
+    // })
+
+    // function handleSwipe() {
+    //     const swipeThreshold = Math.abs(touchStartX - touchEndX)
+
+    //     if (swipeThreshold < 50) {
+    //         // Consider it as a tap or negligible swipe
+    //         return
+    //     }
+
+    //     if (touchStartX > touchEndX) {
+    //         // Swipe left, move to next slide
+    //         moveSlide('next')
+    //     } else {
+    //         // Swipe right, move to previous slide
+    //         moveSlide('prev')
+    //     }
+    // }
+
+    function moveSlide(direction) {
+ 
+        if (direction === 'next') {
+            position -= movePosition
+            position = Math.max(position, -(itemsCount - slidesToShow) * itemWidth)
+        } else {
+            position += movePosition
+            position = Math.min(position, 0)
+        }
+
+        setPosition()
+        checkBtns()
+    }
+
+    // ............................
 
     items.forEach((item) => {
         item.style.minWidth = `${itemWidth - 15}px`
@@ -300,21 +430,24 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
         slideWidth = slides[0].offsetWidth,
         slideIndex = 0,
         posInit = 0,
+
         posX1 = 0,
         posX2 = 0,
         posY1 = 0,
         posY2 = 0,
+
         posFinal = 0,
 
         isSwipe = false,
         isScroll = false,
         allowSwipe = true,
         transition = true,
-        
+
         nextTrf = 0,
         prevTrf = 0,
         lastTrf = --slides.length * slideWidth,
         posThreshold = slides[0].offsetWidth * 0.35,
+
         trfRegExp = /([-0-9.]+(?=px))/,
         swipeStartTime,
         swipeEndTime,
@@ -346,12 +479,21 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
                 prevTrf = (slideIndex - 1) * -slideWidth
 
                 posInit = posX1 = evt.clientX
+
+                // console.log("swipeStart posInit = " +  posInit);
+                // console.log("swipeStart posX1 = " + posX1);
+
                 posY1 = evt.clientY
+
+                // console.log("swipeStart posY1 = " + posY1);
 
                 sliderTrack.style.transition = ''
 
+                // при движении пальцем по экрану — touchmove (mousemove)
                 document.addEventListener('touchmove', swipeAction)
                 document.addEventListener('mousemove', swipeAction)
+
+                // при отпускании пальца — touchend (mouseup)
                 document.addEventListener('touchend', swipeEnd)
                 document.addEventListener('mouseup', swipeEnd)
 
@@ -368,6 +510,11 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
 
             posX2 = posX1 - evt.clientX
             posX1 = evt.clientX
+
+            console.log("swipeAction posX1 = " + posX1)
+            console.log("swipeAction evt.clientX = " + evt.clientX)
+            console.log("--------------------")
+            console.log("swipeAction posX2 = " + posX2)
 
             posY2 = posY1 - evt.clientY
             posY1 = evt.clientY
@@ -414,14 +561,21 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
 
         swipeEnd = function () {
             posFinal = posInit - posX1
+            console.log("swipeEnd posFinal = " + posFinal)
+            console.log(posThreshold)
 
             isScroll = false
             isSwipe = false
 
+            // при движении пальцем по экрану — touchmove (mousemove)
             document.removeEventListener('touchmove', swipeAction)
             document.removeEventListener('mousemove', swipeAction)
+
+
+            // при отпускании пальца — touchend (mouseup)
             document.removeEventListener('touchend', swipeEnd)
             document.removeEventListener('mouseup', swipeEnd)
+
 
             sliderList.classList.add('grab')
             sliderList.classList.remove('grabbing')
@@ -468,7 +622,11 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
     sliderList.classList.add('grab')
 
     sliderTrack.addEventListener('transitionend', () => allowSwipe = true)
+
+    // При касании пальцем срабатывает событие touchstart
     slider.addEventListener('touchstart', swipeStart)
+
+    // при зажатии мыши mousedown
     slider.addEventListener('mousedown', swipeStart)
 
     arrows.addEventListener('click', function () {

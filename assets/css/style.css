@@ -820,6 +820,7 @@ canvas {
 }
 
 .hot-listing-box-item {
+   user-select: none;
    display: flex;
    flex-direction: column;
    justify-content: start;
