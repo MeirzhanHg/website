@@ -421,6 +421,8 @@ if (document.querySelector('.slider-container-lifestyle')) {
 }
 
 function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow, prevBtn, nextBtn) {
+    let line =  document.querySelector('.arrow_absolute');
+    let curWidth = 0
 
     let slider = document.querySelector(sliderContent),
         sliderList = slider.querySelector(sliderListElem),
@@ -442,6 +444,7 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
 
         posFinal = 0,
 
+
         isSwipe = false,
         isScroll = false,
         allowSwipe = true,
@@ -461,17 +464,24 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
         },
 
         slide = function () {
+            curWidth = 100 / (slides.length - slideIndex);
+            line.style.width = curWidth + '%'
+
             if (transition) {
                 sliderTrack.style.transition = 'transform .5s'
             }
             sliderTrack.style.transform = `translate3d(-${slideIndex * slideWidth}px, 0px, 0px)`
-
+           
             prev.classList.toggle('disabled', slideIndex === 0)
             next.classList.toggle('disabled', slideIndex === --slides.length)
+
+           
         },
 
         swipeStart = function () {
             let evt = getEvent()
+
+           
 
             if (allowSwipe) {
 
@@ -504,6 +514,9 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
                 sliderList.classList.remove('grab')
                 sliderList.classList.add('grabbing')
             }
+
+             
+             
         },
 
         swipeAction = function () {
@@ -514,11 +527,6 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
 
             posX2 = posX1 - evt.clientX
             posX1 = evt.clientX
-
-            console.log("swipeAction posX1 = " + posX1)
-            console.log("swipeAction evt.clientX = " + evt.clientX)
-            console.log("--------------------")
-            console.log("swipeAction posX2 = " + posX2)
 
             posY2 = posY1 - evt.clientY
             posY1 = evt.clientY
@@ -560,14 +568,13 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
 
                 sliderTrack.style.transform = `translate3d(${transform - posX2}px, 0px, 0px)`
             }
-
+             
+             
         },
 
         swipeEnd = function () {
             posFinal = posInit - posX1
-            console.log("swipeEnd posFinal = " + posFinal)
-            console.log(posThreshold)
-
+            
             isScroll = false
             isSwipe = false
 
@@ -605,6 +612,9 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
                 allowSwipe = true
             }
 
+             
+             
+
         },
 
         setTransform = function (transform, comapreTransform) {
@@ -613,7 +623,9 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
                     sliderTrack.style.transform = `translate3d(${comapreTransform}px, 0px, 0px)`
                 }
             }
-            allowSwipe = false
+
+            allowSwipe = false;
+
         },
 
         reachEdge = function () {
@@ -621,7 +633,7 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
             swipeEnd()
             allowSwipe = true
         }
-
+    
     sliderTrack.style.transform = 'translate3d(0px, 0px, 0px)'
     sliderList.classList.add('grab')
 
@@ -634,6 +646,7 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
     slider.addEventListener('mousedown', swipeStart)
 
     arrows.addEventListener('click', function () {
+      
         let target = event.target
 
         if (target.classList.contains(nextBtn.slice(1))) {
@@ -654,6 +667,12 @@ if (document.querySelector('.slider-featured')) {
 
     sliderCont('.slider-news', '.news-slider-list', '.news-slider-track', '.news-inner', '.news-arrow', '.prev-news', '.next-news')
 }
+if (document.querySelector('.project_slide')) {
+
+    sliderCont('.project_slide',
+    '.project_slide-list', '.project_slide-track', '.project_slide-inner', '.project_slide-nav', '.prev-project_slide', '.next-project_slide')
+}
+
 
 
 if (document.querySelector('.slider-area')) {
@@ -818,47 +837,66 @@ if (document.querySelector('video')) {
 }
 
 
-// function calculate() {
-//     const amount = parseFloat(document.getElementById('amount').value);
-//     const years = parseInt(document.getElementById('years').value);
-//     const interest = parseFloat(document.getElementById('interest').value);
-//     const bonus = parseFloat(document.getElementById('bonus').value);
-  
-//     const totalYears = amount / years;
-//     const interestAmount = (amount * interest) / 100;
-//     const bonusAmount = (amount * bonus) / 100;
-  
-//     const total = totalYears + interestAmount + bonusAmount;
-  
-//     const resultDiv = document.getElementById('result');
-//     resultDiv.innerHTML = `Сумма за ${years} год(а/лет): ${totalYears.toFixed(2)}<br>
-//                            Процент от суммы: ${interestAmount.toFixed(2)}<br>
-//                            Бонусный процент: ${bonusAmount.toFixed(2)}<br>
-//                            Итоговая сумма: ${total.toFixed(2)}`;
-//   }
-  
-//   document.addEventListener('DOMContentLoaded', function() {
-//     const yearsInput = document.getElementById('years');
-//     const yearsValue = document.getElementById('yearsValue');
-//     yearsValue.textContent = yearsInput.value;
-  
-//     yearsInput.addEventListener('input', function() {
-//       yearsValue.textContent = this.value;
-//     });
-  
-//     const interestInput = document.getElementById('interest');
-//     const interestValue = document.getElementById('interestValue');
-//     interestValue.textContent = interestInput.value;
-  
-//     interestInput.addEventListener('input', function() {
-//       interestValue.textContent = this.value;
-//     });
-  
-//     const bonusInput = document.getElementById('bonus');
-//     const bonusValue = document.getElementById('bonusValue');
-//     bonusValue.textContent = bonusInput.value;
-  
-//     bonusInput.addEventListener('input', function() {
-//       bonusValue.textContent = this.value;
-//     });
-//   });
+
+function calculate() {  
+    const amount = parseFloat(document.getElementById('amount').value)
+    const years = parseInt(document.getElementById('years').value)
+    const interest = parseFloat(document.getElementById('interest').value)
+    const bonus = parseFloat(document.getElementById('bonus').value)
+    
+    
+    const priceSum= document.getElementById('sum')
+
+    const downPayment = amount * (interest / 100);
+    const loanAmount = amount - downPayment;
+
+    const monthlyInterestRate = bonus / 12 / 100;
+    const totalPayments = years * 12;
+
+    const monthlyPayment = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalPayments)) /
+    (Math.pow(1 + monthlyInterestRate, totalPayments) - 1);
+    
+
+
+    priceSum.textContent = monthlyPayment.toFixed(2)
+
+
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const yearsInput = document.getElementById('years')
+    const yearsValue = document.getElementById('yearsValue')
+    yearsValue.textContent = yearsInput.value
+
+    yearsInput.addEventListener('input', function () {
+        yearsValue.textContent = this.value
+        calculate()
+    })
+
+    const interestInput = document.getElementById('interest')
+    const interestValue = document.getElementById('interestValue')
+    interestValue.textContent = interestInput.value
+
+    interestInput.addEventListener('input', function () {
+        interestValue.textContent = this.value
+        calculate()
+    })
+
+    const bonusInput = document.getElementById('bonus')
+    const bonusValue = document.getElementById('bonusValue')
+    bonusValue.textContent = bonusInput.value
+
+    bonusInput.addEventListener('input', function () {
+        bonusValue.textContent = this.value
+        calculate()
+    })
+
+    const amountInput = document.getElementById('amount')
+
+    const updatePrice = () => {
+        const newPrice = parseFloat(amountInput.value)
+        calculate()
+    }
+
+    amountInput.addEventListener('input', updatePrice)
+});

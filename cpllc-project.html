@@ -234,31 +234,42 @@
                      <div class="calculator">
                         <label for="amount">Property price in AED</label>
 
-                        <input class="input_sum" type="text" placeholder="6,200,000">
+                        <input class="input_sum" id="amount" value="6200000" type="text" placeholder="6,200,000">
                         
 
-                        <label for="years">Mortgage Terms in Years: 15
+                        <label for="years">Mortgage Terms in Years: 
+                        <span id="yearsValue">15</span> 
+
+
                         </label>
                         <input class="input_calc" type="range" id="years" min="1" max="100" step="1" value="15">
                         
                         
-                        <label for="interest">Percentage Down Payment: 20%</label>
+                        <label for="interest">Percentage Down Payment: 
+                        <span id="interestValue">20</span>%
+                        
+                        </label>
+
                         <input class="input_calc" type="range" id="interest" min="0" max="100" step="1" value="10">
                         
 
-                        <label for="bonus">Interest rate: 6%</label>
+                        <label for="bonus">Interest rate:
+                           <span id="bonusValue">6</span>%
+                        
+                        </label>
+                        
                         <input class="input_calc" type="range" id="bonus" min="0" max="50" step="1" value="5">
                         
-                        
-
-                        <div class="calculator_text">Estimated monthly payment: AED /mo
-                        </div>
+                        <div class="calculator_text">Estimated monthly payment: AED <span id="sum"></span>  /mo
+                        </div> 
 
                         <div class="calculator_sum">
 
                            <button class="calculator_btn">GET AN EXPERT ADVICE</button>
                         </div>
                         
+
+                        <div id="result"></div>
                       </div>
                   </div>
                </div>
@@ -269,35 +280,56 @@
       </div>
 
       <div class="project_slide">
-         <div class="project_slide-wrapper">
+         <div class="project_slide-list">
+            <div class="project_slide-wrapper project_slide-track">
 
-            <div class="project_slide-inner">
-               <div class="project_slide-image">
-                  <img src="assets/images/listing/3.jpg" alt="">
+               <div class="project_slide-inner">
+                  <div class="project_slide-image">
+                     <img src="assets/images/listing/3.jpg" alt="">
+                  </div>
                </div>
-            </div>
 
-            <div class="project_slide-inner">
-               <div class="project_slide-image">
-                  <img src="assets/images/listing/2.jpg" alt="">
+               <div class="project_slide-inner">
+                  <div class="project_slide-image">
+                     <img src="assets/images/listing/2.jpg" alt="">
+                  </div>
                </div>
-            </div>
+               <div class="project_slide-inner">
+                  <div class="project_slide-image">
+                     <img src="assets/images/listing/2.jpg" alt="">
+                  </div>
+               </div>
+               <div class="project_slide-inner">
+                  <div class="project_slide-image">
+                     <img src="assets/images/listing/2.jpg" alt="">
+                  </div>
+               </div>
+               
+               <div class="project_slide-inner">
+                  <div class="project_slide-image">
+                     <img src="assets/images/listing/2.jpg" alt="">
+                  </div>
+               </div>
 
+            </div>
          </div>
 
          <div class="container">
             <div class="project_slide-bottom">
 
                <div class="project_slide-nav lifestyle-arrow">
-                  <div class="prev prev-lifestyle">
-                     <img class="" src="assets/images/white-arrow.svg" alt="arrow">
+                  <div class="prev prev-project_slide">
+                     <img class="prev-project_slide" src="assets/images/white-arrow.svg" alt="arrow">
                   </div>
                   
-                  <div class="next next-lifestyle">
-                     <img class="" src="assets/images/white-arrow.svg" alt="arrow">
+                  <div class="next next-project_slide">
+                     <img class="next-project_slide" src="assets/images/white-arrow.svg" alt="arrow">
                   </div>
+                  
                </div>
-               <div class="project_slide-arrow"></div>
+               <div class="project_slide-arrow">
+                  <div class="arrow_absolute"></div>
+               </div>
            </div>
 
          </div>
