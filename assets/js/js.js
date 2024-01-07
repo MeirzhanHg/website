@@ -409,7 +409,11 @@ if (document.querySelector('.slider-container-sale')) {
 
     sliderMore('.slider-container-sale', '.sale-slider-track', '.prev-sale', '.next-sale', '.sale-slide')
 
+}
+
+if (document.querySelector('.slider-container-rent')) {
     sliderMore('.slider-container-rent', '.rent-slider-track', '.prev-rent', '.next-rent', '.rent-slide')
+
 }
 
 if (document.querySelector('.slider-container-lifestyle')) {
@@ -813,3 +817,48 @@ if (document.querySelector('video')) {
     playPause()
 }
 
+
+// function calculate() {
+//     const amount = parseFloat(document.getElementById('amount').value);
+//     const years = parseInt(document.getElementById('years').value);
+//     const interest = parseFloat(document.getElementById('interest').value);
+//     const bonus = parseFloat(document.getElementById('bonus').value);
+  
+//     const totalYears = amount / years;
+//     const interestAmount = (amount * interest) / 100;
+//     const bonusAmount = (amount * bonus) / 100;
+  
+//     const total = totalYears + interestAmount + bonusAmount;
+  
+//     const resultDiv = document.getElementById('result');
+//     resultDiv.innerHTML = `Сумма за ${years} год(а/лет): ${totalYears.toFixed(2)}<br>
+//                            Процент от суммы: ${interestAmount.toFixed(2)}<br>
+//                            Бонусный процент: ${bonusAmount.toFixed(2)}<br>
+//                            Итоговая сумма: ${total.toFixed(2)}`;
+//   }
+  
+//   document.addEventListener('DOMContentLoaded', function() {
+//     const yearsInput = document.getElementById('years');
+//     const yearsValue = document.getElementById('yearsValue');
+//     yearsValue.textContent = yearsInput.value;
+  
+//     yearsInput.addEventListener('input', function() {
+//       yearsValue.textContent = this.value;
+//     });
+  
+//     const interestInput = document.getElementById('interest');
+//     const interestValue = document.getElementById('interestValue');
+//     interestValue.textContent = interestInput.value;
+  
+//     interestInput.addEventListener('input', function() {
+//       interestValue.textContent = this.value;
+//     });
+  
+//     const bonusInput = document.getElementById('bonus');
+//     const bonusValue = document.getElementById('bonusValue');
+//     bonusValue.textContent = bonusInput.value;
+  
+//     bonusInput.addEventListener('input', function() {
+//       bonusValue.textContent = this.value;
+//     });
+//   });
