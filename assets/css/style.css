@@ -3910,6 +3910,7 @@ button {
 
 .project_slide-inner {
    flex: 0 0 80%;
+   user-select: none; 
 }
 
 .project_slide-image {
@@ -3917,6 +3918,7 @@ button {
    width: 100%;
 }
 .project_slide-image img {
+   pointer-events: none;
    max-width: 100%;
    max-height: 100%;
    width: 100%;
@@ -3932,6 +3934,13 @@ button {
    align-items: center;
 }
 
+.project_slide-list.grab {
+cursor: grab;
+}
+
+.project_slide-list.grabbing {
+   cursor: grabbing;
+   }
 .project_slide-arrow {
    position: relative;
    z-index: 2;

@@ -421,6 +421,7 @@ if (document.querySelector('.slider-container-lifestyle')) {
 }
 
 function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow, prevBtn, nextBtn) {
+    
     let line =  document.querySelector('.arrow_absolute');
     let curWidth = 0
 
@@ -464,8 +465,12 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
         },
 
         slide = function () {
-            curWidth = 100 / (slides.length - slideIndex);
-            line.style.width = curWidth + '%'
+            if(document.querySelector('.project_slide-arrow')) {
+        
+                
+                curWidth = 100 / (slides.length - slideIndex);
+                line.style.width = curWidth + '%'
+            }
 
             if (transition) {
                 sliderTrack.style.transition = 'transform .5s'
@@ -633,6 +638,8 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
             swipeEnd()
             allowSwipe = true
         }
+
+        slide()
     
     sliderTrack.style.transform = 'translate3d(0px, 0px, 0px)'
     sliderList.classList.add('grab')
@@ -864,39 +871,45 @@ function calculate() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const yearsInput = document.getElementById('years')
-    const yearsValue = document.getElementById('yearsValue')
-    yearsValue.textContent = yearsInput.value
+    if(document.querySelector('#years')) {
 
-    yearsInput.addEventListener('input', function () {
-        yearsValue.textContent = this.value
-        calculate()
-    })
+   
+        const yearsInput = document.getElementById('years')
+        const yearsValue = document.getElementById('yearsValue')
+        yearsValue.textContent = yearsInput.value
 
-    const interestInput = document.getElementById('interest')
-    const interestValue = document.getElementById('interestValue')
-    interestValue.textContent = interestInput.value
+        yearsInput.addEventListener('input', function () {
+            yearsValue.textContent = this.value
+            calculate()
+        })
 
-    interestInput.addEventListener('input', function () {
-        interestValue.textContent = this.value
-        calculate()
-    })
+        const interestInput = document.getElementById('interest')
+        const interestValue = document.getElementById('interestValue')
+        interestValue.textContent = interestInput.value
 
-    const bonusInput = document.getElementById('bonus')
-    const bonusValue = document.getElementById('bonusValue')
-    bonusValue.textContent = bonusInput.value
+        interestInput.addEventListener('input', function () {
+            interestValue.textContent = this.value
+            calculate()
+        })
 
-    bonusInput.addEventListener('input', function () {
-        bonusValue.textContent = this.value
-        calculate()
-    })
+        const bonusInput = document.getElementById('bonus')
+        const bonusValue = document.getElementById('bonusValue')
+        bonusValue.textContent = bonusInput.value
 
-    const amountInput = document.getElementById('amount')
+        bonusInput.addEventListener('input', function () {
+            bonusValue.textContent = this.value
+            calculate()
+        })
 
-    const updatePrice = () => {
-        const newPrice = parseFloat(amountInput.value)
+        const amountInput = document.getElementById('amount')
+
+        const updatePrice = () => {
+            const newPrice = parseFloat(amountInput.value)
+            calculate()
+        }
+
+        amountInput.addEventListener('input', updatePrice)
+
         calculate()
     }
-
-    amountInput.addEventListener('input', updatePrice)
 });
