@@ -913,3 +913,132 @@ document.addEventListener('DOMContentLoaded', function () {
         calculate()
     }
 });
+
+
+
+
+"use strict"
+
+// const isMobile = {
+//     Android: function() {
+//         return navigator.userAgent.match(/Android/i)
+//     },
+//     BlackBerry: function() {
+//         return navigator.userAgent.match(/BlackBerry/i)
+//     },
+//     iOS: function() {
+//         return navigator.userAgent.match(/iPhone|iPad|iPod/i)
+//     },
+//     Opera: function() {
+//         return navigator.userAgent.match(/Opera Mini/i)
+//     },
+//     Windows: function() {
+//         return navigator.userAgent.match(/IEMobile/i)
+//     },
+//     any: function() {
+//         return (
+//             isMobile.Android() ||
+//             isMobile.BlackBerry() ||
+//             isMobile.iOS() ||
+//             isMobile.Opera() ||
+//             isMobile.Windows());
+//     }
+// };
+
+
+    let menuArrows = document.querySelectorAll('.menu__bottom');
+
+    if (menuArrows.length > 0) {
+        for (let index = 0; index < menuArrows.length; index++) {
+            const menuArrow = menuArrows[index];
+            menuArrow.addEventListener("click", function(e) {
+                menuArrow.classList.toggle('_active');
+            });
+        }
+    }
+
+
+
+
+// Меню бургер
+const iconMenu = document.querySelector('.menu-cta');
+const menuBody = document.querySelector('.menu__body');
+
+if (iconMenu) {
+    iconMenu.addEventListener("click", function(e) {
+        document.body.classList.toggle('_lock');
+        iconMenu.classList.toggle('_active');
+        menuBody.classList.toggle('_active');
+
+    })
+}
+
+
+
+
+// const selectSingle = document.querySelector('.__select');
+
+// const selectSingle_title = selectSingle.querySelector('.__select__title');
+// const selectSingle_labels = selectSingle.querySelectorAll('.__select__label');
+
+// // Toggle menu
+// selectSingle_title.addEventListener('click', () => {
+//   if ('active' === selectSingle.getAttribute('data-state')) {
+//     selectSingle.setAttribute('data-state', '');
+//   } else {
+//     selectSingle.setAttribute('data-state', 'active');
+//   }
+// });
+
+// // Close when click to option
+// for (let i = 0; i < selectSingle_labels.length; i++) {
+//   selectSingle_labels[i].addEventListener('click', (evt) => {
+//     selectSingle_title.textContent = evt.target.textContent;
+//     selectSingle.setAttribute('data-state', '');
+//   });
+// }
+
+
+// const selectSingles = document.querySelectorAll('.__select');
+// const selectSingle_labels = document.querySelectorAll('.__select__label');
+
+// // Toggle menu for each selectSingle
+// selectSingles.forEach((selectSingle) => {
+//   const selectSingle_title = selectSingle.querySelector('.__select__title');
+  
+//   selectSingle_title.addEventListener('click', () => {
+//     if ('active' === selectSingle.getAttribute('data-state')) {
+//       selectSingle.setAttribute('data-state', '');
+//     } else {
+//       selectSingle.setAttribute('data-state', 'active');
+//     }
+//   });
+  
+//   // Close when click to option for each selectSingle
+//   selectSingle_labels.forEach((label) => {
+//     label.addEventListener('click', (evt) => {
+//       selectSingle_title.textContent = evt.target.textContent;
+//       selectSingle.setAttribute('data-state', '');
+//     });
+//   });
+// });
+
+const selectSingles = document.querySelectorAll('.__select');
+
+selectSingles.forEach((selectSingle) => {
+  const selectSingle_title = selectSingle.querySelector('.__select__title');
+  const selectSingle_labels = selectSingle.querySelectorAll('.__select__label');
+
+  selectSingle_title.addEventListener('click', () => {
+    const isActive = selectSingle.getAttribute('data-state') === 'active';
+    selectSingles.forEach((s) => s.removeAttribute('data-state'));
+    selectSingle.setAttribute('data-state', isActive ? '' : 'active');
+  });
+
+  selectSingle_labels.forEach((label) => {
+    label.addEventListener('click', (evt) => {
+      selectSingle_title.textContent = evt.target.textContent;
+      selectSingle.removeAttribute('data-state');
+    });
+  });
+});
