@@ -4622,7 +4622,6 @@ body .menu__list > li .menu__arrow {
    padding: 100px 50px;
    transition: right 0.3s ease 0s;
    overflow: auto;
-   animation: opac_two 0.6s;
 }
 .menu__body._active {
    display: block;
@@ -4639,14 +4638,6 @@ body .menu__list > li .menu__arrow {
    }
  }
 
- @keyframes opac_two {
-   from {
-     right: 0;
-   }
-   to {
-     right: -100%;
-   }
- }
 
 .menu__list > li {
    flex-wrap: wrap;
@@ -4736,7 +4727,6 @@ body .menu__list > li .menu__arrow {
    }
    .menu__body::before {
       width: 60%;
-
       height: 80px;
    }
    .menu__sub-list {
@@ -4762,14 +4752,11 @@ body .menu__list > li .menu__arrow {
    }
 
    .menu__body::before {
-      content: "";
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
+      width: 99.9%;
       height: 70px;
       background-color: #081e3b;
       z-index: 2;
+      animation: opac 1s;
    }
 }
 

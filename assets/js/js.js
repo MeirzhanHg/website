@@ -421,8 +421,8 @@ if (document.querySelector('.slider-container-lifestyle')) {
 }
 
 function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow, prevBtn, nextBtn) {
-    
-    let line =  document.querySelector('.arrow_absolute');
+
+    let line = document.querySelector('.arrow_absolute')
     let curWidth = 0
 
     let slider = document.querySelector(sliderContent),
@@ -465,10 +465,10 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
         },
 
         slide = function () {
-            if(document.querySelector('.project_slide-arrow')) {
-        
-                
-                curWidth = 100 / (slides.length - slideIndex);
+            if (document.querySelector('.project_slide-arrow')) {
+
+
+                curWidth = 100 / (slides.length - slideIndex)
                 line.style.width = curWidth + '%'
             }
 
@@ -476,17 +476,17 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
                 sliderTrack.style.transition = 'transform .5s'
             }
             sliderTrack.style.transform = `translate3d(-${slideIndex * slideWidth}px, 0px, 0px)`
-           
+
             prev.classList.toggle('disabled', slideIndex === 0)
             next.classList.toggle('disabled', slideIndex === --slides.length)
 
-           
+
         },
 
         swipeStart = function () {
             let evt = getEvent()
 
-           
+
 
             if (allowSwipe) {
 
@@ -520,8 +520,8 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
                 sliderList.classList.add('grabbing')
             }
 
-             
-             
+
+
         },
 
         swipeAction = function () {
@@ -573,13 +573,13 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
 
                 sliderTrack.style.transform = `translate3d(${transform - posX2}px, 0px, 0px)`
             }
-             
-             
+
+
         },
 
         swipeEnd = function () {
             posFinal = posInit - posX1
-            
+
             isScroll = false
             isSwipe = false
 
@@ -617,8 +617,8 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
                 allowSwipe = true
             }
 
-             
-             
+
+
 
         },
 
@@ -629,7 +629,7 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
                 }
             }
 
-            allowSwipe = false;
+            allowSwipe = false
 
         },
 
@@ -639,8 +639,8 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
             allowSwipe = true
         }
 
-        slide()
-    
+    slide()
+
     sliderTrack.style.transform = 'translate3d(0px, 0px, 0px)'
     sliderList.classList.add('grab')
 
@@ -653,7 +653,7 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
     slider.addEventListener('mousedown', swipeStart)
 
     arrows.addEventListener('click', function () {
-      
+
         let target = event.target
 
         if (target.classList.contains(nextBtn.slice(1))) {
@@ -677,7 +677,7 @@ if (document.querySelector('.slider-featured')) {
 if (document.querySelector('.project_slide')) {
 
     sliderCont('.project_slide',
-    '.project_slide-list', '.project_slide-track', '.project_slide-inner', '.project_slide-nav', '.prev-project_slide', '.next-project_slide')
+        '.project_slide-list', '.project_slide-track', '.project_slide-inner', '.project_slide-nav', '.prev-project_slide', '.next-project_slide')
 }
 
 
@@ -845,24 +845,24 @@ if (document.querySelector('video')) {
 
 
 
-function calculate() {  
+function calculate() {
     const amount = parseFloat(document.getElementById('amount').value)
     const years = parseInt(document.getElementById('years').value)
     const interest = parseFloat(document.getElementById('interest').value)
     const bonus = parseFloat(document.getElementById('bonus').value)
-    
-    
-    const priceSum= document.getElementById('sum')
 
-    const downPayment = amount * (interest / 100);
-    const loanAmount = amount - downPayment;
 
-    const monthlyInterestRate = bonus / 12 / 100;
-    const totalPayments = years * 12;
+    const priceSum = document.getElementById('sum')
+
+    const downPayment = amount * (interest / 100)
+    const loanAmount = amount - downPayment
+
+    const monthlyInterestRate = bonus / 12 / 100
+    const totalPayments = years * 12
 
     const monthlyPayment = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalPayments)) /
-    (Math.pow(1 + monthlyInterestRate, totalPayments) - 1);
-    
+        (Math.pow(1 + monthlyInterestRate, totalPayments) - 1)
+
 
 
     priceSum.textContent = monthlyPayment.toFixed(2)
@@ -871,9 +871,9 @@ function calculate() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    if(document.querySelector('#years')) {
+    if (document.querySelector('#years')) {
 
-   
+
         const yearsInput = document.getElementById('years')
         const yearsValue = document.getElementById('yearsValue')
         yearsValue.textContent = yearsInput.value
@@ -912,63 +912,61 @@ document.addEventListener('DOMContentLoaded', function () {
 
         calculate()
     }
-});
+})
 
+// **---------Scroll------------***
+function calcScroll() {
+    let div = document.createElement('div')
 
+    div.style.width = '50px'
+    div.style.height = '50px'
+    div.style.overflowY = 'scroll'
+    div.style.visibility = 'hidden'
 
+    document.body.appendChild(div)
 
-"use strict"
+    let scrollWidh = div.offsetWidth - div.clientWidth
+    div.remove()
 
-// const isMobile = {
-//     Android: function() {
-//         return navigator.userAgent.match(/Android/i)
-//     },
-//     BlackBerry: function() {
-//         return navigator.userAgent.match(/BlackBerry/i)
-//     },
-//     iOS: function() {
-//         return navigator.userAgent.match(/iPhone|iPad|iPod/i)
-//     },
-//     Opera: function() {
-//         return navigator.userAgent.match(/Opera Mini/i)
-//     },
-//     Windows: function() {
-//         return navigator.userAgent.match(/IEMobile/i)
-//     },
-//     any: function() {
-//         return (
-//             isMobile.Android() ||
-//             isMobile.BlackBerry() ||
-//             isMobile.iOS() ||
-//             isMobile.Opera() ||
-//             isMobile.Windows());
-//     }
-// };
-
-
-    let menuArrows = document.querySelectorAll('.menu__bottom');
-
-    if (menuArrows.length > 0) {
-        for (let index = 0; index < menuArrows.length; index++) {
-            const menuArrow = menuArrows[index];
-            menuArrow.addEventListener("click", function(e) {
-                menuArrow.classList.toggle('_active');
-            });
-        }
-    }
-
-
+    return scrollWidh
+}
 
 
 // Меню бургер
-const iconMenu = document.querySelector('.menu-cta');
-const menuBody = document.querySelector('.menu__body');
+
+
+const scroll = calcScroll()
+
+let menuArrows = document.querySelectorAll('.menu__bottom');
+
+if (menuArrows.length > 0) {
+    for (let index = 0; index < menuArrows.length; index++) {
+        const menuArrow = menuArrows[index];
+
+        menuArrow.addEventListener("click", function (e) {
+            document.body.style.marginRight = `${scroll}px`;
+
+            // Закрываем все открытые элементы, кроме текущего
+            menuArrows.forEach((element) => {
+                if (element !== menuArrow && element.classList.contains('_active')) {
+                    element.classList.remove('_active');
+                }
+            });
+
+            // Переключаем класс '_active' для текущего элемента
+            menuArrow.classList.toggle('_active');
+        });
+    }
+}
+
+const iconMenu = document.querySelector('.menu-cta')
+const menuBody = document.querySelector('.menu__body')
 
 if (iconMenu) {
-    iconMenu.addEventListener("click", function(e) {
-        document.body.classList.toggle('_lock');
-        iconMenu.classList.toggle('_active');
-        menuBody.classList.toggle('_active');
+    iconMenu.addEventListener("click", function (e) {
+        document.body.classList.toggle('_lock')
+        iconMenu.classList.toggle('_active')
+        menuBody.classList.toggle('_active')
 
     })
 }
@@ -976,42 +974,43 @@ if (iconMenu) {
 
 
 // Custom Select
-const selectSingles = document.querySelectorAll('.__select');
+const selectSingles = document.querySelectorAll('.__select')
 
 selectSingles.forEach((selectSingle) => {
-  const selectSingle_title = selectSingle.querySelector('.__select__title');
-  const selectSingle_labels = selectSingle.querySelectorAll('.__select__label');
+    const selectSingle_title = selectSingle.querySelector('.__select__title')
+    const selectSingle_labels = selectSingle.querySelectorAll('.__select__label')
 
-  selectSingle_title.addEventListener('click', () => {
-    const isActive = selectSingle.getAttribute('data-state') === 'active';
-    selectSingles.forEach((s) => s.removeAttribute('data-state'));
-    selectSingle.setAttribute('data-state', isActive ? '' : 'active');
-  });
+    selectSingle_title.addEventListener('click', () => {
+        const isActive = selectSingle.getAttribute('data-state') === 'active'
+        selectSingles.forEach((s) => s.removeAttribute('data-state'))
+        selectSingle.setAttribute('data-state', isActive ? '' : 'active')
+    })
 
-  selectSingle_labels.forEach((label) => {
-    label.addEventListener('click', (evt) => {
-      selectSingle_title.textContent = evt.target.textContent;
-      selectSingle.removeAttribute('data-state');
-    });
-  });
-});
+    selectSingle_labels.forEach((label) => {
+        label.addEventListener('click', (evt) => {
+            selectSingle_title.textContent = evt.target.textContent
+            selectSingle.removeAttribute('data-state')
+        })
+    })
+})
 // End Custom Select
 
 
 // Fixed menu top
-window.addEventListener('scroll', function() {
-    var menus = document.querySelectorAll('.menu_header'); // Выбираем все меню
-    var sections = document.querySelectorAll('.section-2'); // Выбираем все ваши секции
+window.addEventListener('scroll', function () {
+    var menus = document.querySelectorAll('.menu_header') // Выбираем все меню
+    var sections = document.querySelectorAll('.section-2') // Выбираем все ваши секции
 
-    sections.forEach(function(section, index) {
-        var menu = menus[index];
-        var sectionOffset = section.offsetTop;
+    sections.forEach(function (section, index) {
+        var menu = menus[index]
+        var sectionOffset = section.offsetTop
 
         if (window.pageYOffset > sectionOffset) {
-            menu.classList.add('fixed');
+            menu.classList.add('fixed')
         } else {
-            menu.classList.remove('fixed');
+            menu.classList.remove('fixed')
         }
-    });
-});
+    })
+})
 // END Fixed menu top
+
