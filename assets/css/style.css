@@ -57,7 +57,7 @@ p {
    max-width: 1300px;
    padding: 0 50px;
    margin: 0 auto;
-   z-index: 10;
+   z-index: 0;
 }
 
 @media (max-width: 950px) {
@@ -73,20 +73,49 @@ p {
 }
 
 /*******************************  Menu*/
+.menu_header {
+   position: absolute;
+   z-index: 1;
+   width: 100%;
+   background: transparent;
+   left: 0;
+   right: 0;
+   transition: all 0.4s ease;
+}
 .menu_wrapper {
    display: flex;
    flex-direction: row;
    justify-content: flex-end;
-   background: transparent;
-   position: absolute;
-   z-index: 1;
-   width: 100%;
+
    max-width: 1500px;
    padding: 50px 50px 0 50px;
    margin: 0 auto;
+}
+
+.menu_header.fixed .menu_wrapper {
+   padding: 30px;
+
+}
+.menu_header.fixed {
+   border-top: 1px solid #fff;
+   position: fixed;
+   width: 100%;
+
+   top: 0;
    left: 0;
    right: 0;
+   z-index: 1;
+   transition: all 0.4s ease;
+
+   /* Дополнительные стили для фиксированного меню */
+   /* Например: */
+   background-color: rgb(5 16 30);
+   
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   /* Добавьте любые другие стили, необходимые для фиксированного меню */
 }
+
+
 
 .menu-cta {
    text-transform: uppercase;
@@ -156,6 +185,10 @@ p {
    .menu_wrapper {
       padding: 15px 20px 0 20px;
    }
+   .menu_header.fixed .menu_wrapper {
+      padding: 25px;
+   }
+
 }
 
 /****************** Home Intro*/

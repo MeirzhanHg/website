@@ -972,57 +972,10 @@ if (iconMenu) {
 
     })
 }
+// END Меню бургер
 
 
-
-
-// const selectSingle = document.querySelector('.__select');
-
-// const selectSingle_title = selectSingle.querySelector('.__select__title');
-// const selectSingle_labels = selectSingle.querySelectorAll('.__select__label');
-
-// // Toggle menu
-// selectSingle_title.addEventListener('click', () => {
-//   if ('active' === selectSingle.getAttribute('data-state')) {
-//     selectSingle.setAttribute('data-state', '');
-//   } else {
-//     selectSingle.setAttribute('data-state', 'active');
-//   }
-// });
-
-// // Close when click to option
-// for (let i = 0; i < selectSingle_labels.length; i++) {
-//   selectSingle_labels[i].addEventListener('click', (evt) => {
-//     selectSingle_title.textContent = evt.target.textContent;
-//     selectSingle.setAttribute('data-state', '');
-//   });
-// }
-
-
-// const selectSingles = document.querySelectorAll('.__select');
-// const selectSingle_labels = document.querySelectorAll('.__select__label');
-
-// // Toggle menu for each selectSingle
-// selectSingles.forEach((selectSingle) => {
-//   const selectSingle_title = selectSingle.querySelector('.__select__title');
-  
-//   selectSingle_title.addEventListener('click', () => {
-//     if ('active' === selectSingle.getAttribute('data-state')) {
-//       selectSingle.setAttribute('data-state', '');
-//     } else {
-//       selectSingle.setAttribute('data-state', 'active');
-//     }
-//   });
-  
-//   // Close when click to option for each selectSingle
-//   selectSingle_labels.forEach((label) => {
-//     label.addEventListener('click', (evt) => {
-//       selectSingle_title.textContent = evt.target.textContent;
-//       selectSingle.setAttribute('data-state', '');
-//     });
-//   });
-// });
-
+// Custom Select
 const selectSingles = document.querySelectorAll('.__select');
 
 selectSingles.forEach((selectSingle) => {
@@ -1042,3 +995,23 @@ selectSingles.forEach((selectSingle) => {
     });
   });
 });
+// End Custom Select
+
+
+// Fixed menu top
+window.addEventListener('scroll', function() {
+    var menus = document.querySelectorAll('.menu_header'); // Выбираем все меню
+    var sections = document.querySelectorAll('.section-2'); // Выбираем все ваши секции
+
+    sections.forEach(function(section, index) {
+        var menu = menus[index];
+        var sectionOffset = section.offsetTop;
+
+        if (window.pageYOffset > sectionOffset) {
+            menu.classList.add('fixed');
+        } else {
+            menu.classList.remove('fixed');
+        }
+    });
+});
+// END Fixed menu top
