@@ -72,7 +72,7 @@ p {
    }
 }
 
-/*******************************  Menu*/
+/******  Menu *********/
 .menu_header {
    position: absolute;
    z-index: 1;
@@ -86,7 +86,6 @@ p {
    display: flex;
    flex-direction: row;
    justify-content: flex-end;
-
    max-width: 1500px;
    padding: 50px 50px 0 50px;
    margin: 0 auto;
@@ -94,29 +93,34 @@ p {
 
 .menu_header.fixed .menu_wrapper {
    padding: 30px;
-
 }
 .menu_header.fixed {
    border-top: 1px solid #fff;
    position: fixed;
    width: 100%;
-
    top: 0;
    left: 0;
    right: 0;
    z-index: 1;
    transition: all 0.4s ease;
-
-   /* Дополнительные стили для фиксированного меню */
-   /* Например: */
    background-color: rgb(5 16 30);
-   
    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-   /* Добавьте любые другие стили, необходимые для фиксированного меню */
 }
 
-
-
+.menu_btns {
+   display: flex;
+   align-items: center;
+   column-gap: 25px
+}
+.menu__icon-whatsapp {
+   text-transform: uppercase;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.ico-whatsapp {
+   margin-right: 5px;
+}
 .menu-cta {
    text-transform: uppercase;
    display: flex;
@@ -125,7 +129,8 @@ p {
    width: fit-content;
 }
 .menu-btn {
-   padding: 15px 25px;
+   height: 40px;
+   padding: 0 25px;
    position: relative;
    z-index: 25;
    font-weight: bold;
@@ -191,7 +196,7 @@ p {
 
 }
 
-/****************** Home Intro*/
+/****************** Home Intro***************/
 .intro {
    display: flex;
    flex-direction: column;
@@ -2383,7 +2388,7 @@ canvas {
    }
 }
 
-/* developer-intro */
+/* developer -> intro */
 
 .developer_intro {
    background-color: #03101f;
@@ -2437,7 +2442,7 @@ canvas {
    margin-top: -70px;
 }
 
-/* developer project */
+/* developer  -> projects */
 .projects {
    padding-bottom: 100px;
 }
@@ -2545,7 +2550,7 @@ canvas {
    }
 }
 
-/* lifestyle */
+/* lifestyle page */
 .lifestyle {
    padding: 120px 0;
 
@@ -2655,7 +2660,7 @@ canvas {
    }
 }
 
-/* lifestyle-object */
+/* lifestyle  -> object */
 .objects {
    padding: 120px 0;
 }
@@ -2810,6 +2815,8 @@ canvas {
    }
 }
 
+/* service - guidelines  */
+
 .guidelines {
    padding: 0px 0 100px 0;
    background-color: #edf0f2;
@@ -2830,10 +2837,6 @@ canvas {
    flex-shrink: 0;
    padding: 0 7.5px;
 }
-
-/* .other-inner:not(:last-child) {
-   padding-right: 15px;
-} */
 
 .other-wrapper {
    padding: 10px;
@@ -3209,7 +3212,7 @@ canvas {
    }
 }
 
-/* building */
+/* blog -> building */
 .building {
    padding: 120px 0;
 }
@@ -3382,7 +3385,7 @@ canvas {
    }
 }
 
-/* single blog */
+/* single blog -> blog_intro */
 .single-blog_intro {
    padding: 120px 0 350px 0;
    background-color: #03101f;
@@ -3433,7 +3436,6 @@ canvas {
    flex: 1 1 auto;
    display: flex;
    flex-direction: column;
-   /* align-items: center */
 }
 
 .single_share {
@@ -3523,7 +3525,8 @@ canvas {
    }
 }
 
-/* cpllc-project */
+/* cpllc-project -> project */
+
 .project {
    padding: 120px 0 20px 0;
    background-color: #03101f;
@@ -3613,7 +3616,7 @@ canvas {
    }
 }
 
-/* about_project */
+/*********** cpllc-project -> about_project ************/
 
 .about_pr {
    padding: 80px 0 50px 0;
@@ -3623,8 +3626,6 @@ canvas {
    display: flex;
 }
 
-.about_pr-column {
-}
 .data {
    flex: 0 1 70%;
    margin-right: 100px;
@@ -3747,8 +3748,6 @@ canvas {
    margin-bottom: 20px;
 }
 
-.calculator {
-}
 .input_sum {
    display: block;
    border-radius: 15px;
@@ -3932,6 +3931,9 @@ button {
    }
 }
 
+
+/********* cpllc-project -> project slide **********/
+
 .project_slide {
    max-width: 90%;
    margin-left: auto;
@@ -4027,7 +4029,7 @@ button {
    }
 }
 
-/* avalibility */
+/************ cpllc-project -> avalibility *************/
 
 .avalibility {
    margin-top: -300px;
@@ -4149,7 +4151,7 @@ button {
    }
 }
 
-/* location */
+/*********** cpllc-project -> location **********/
 
 .location {
    padding: 100px 0;
@@ -4223,8 +4225,6 @@ button {
    height: 100%;
 }
 
-@media (max-width: 1100px) {
-}
 @media (max-width: 900px) {
    .location {
       padding: 80px 0;
@@ -4303,7 +4303,7 @@ button {
    }
 }
 
-/* view */
+/************** cpllc-project -> view ***************/
 
 .view {
    padding: 100px 0;
@@ -4429,7 +4429,7 @@ button {
    }
 }
 
-/* Slider */
+/*********** Slider ************/
 
 .slider-list {
    width: 100%;
@@ -4452,7 +4452,7 @@ video::-webkit-media-controls {
    display: none !important;
 }
 
-/* Menu Burger ********************************************/
+/****************** Menu Burger ***********************/
 
 .menu__body {
    display: none;
@@ -4510,7 +4510,6 @@ video::-webkit-media-controls {
    text-decoration: underline;
 }
 
-/* ***************************** */
 body._lock {
    overflow: hidden;
 }
@@ -4559,13 +4558,11 @@ body .menu__list > li .menu__arrow {
    display: none;
 }
 
-/* ***************************** */
-
 .menu__icon {
    z-index: 5;
    display: block;
    position: relative;
-   width: 30px;
+   width: 20px;
    height: 18px;
    cursor: pointer;
    margin-right: 15px;
@@ -4709,6 +4706,7 @@ body .menu__list > li .menu__arrow {
 .menu__bottom._active .advantages__btn-icon::after {
    transform: rotateZ(0deg);
 }
+
 .menu__body::before {
    animation: opac 0.6s;
    content: "";
@@ -4746,8 +4744,6 @@ body .menu__list > li .menu__arrow {
       margin: 0;
    }
    .menu__icon {
-      width: 20px;
-      height: 18px;
       margin-right: 10px;
    }
 
@@ -4760,7 +4756,8 @@ body .menu__list > li .menu__arrow {
    }
 }
 
-/* Select Custom */
+
+/********************* Select Custom*********/
 .select_wrapper {
    display: flex;
    gap: 30px;
@@ -4868,10 +4865,9 @@ body .menu__list > li .menu__arrow {
 }
 
 .__select__label:hover {
-   /* background-color: #6d7683 !important; */
    color: #fff;
-   /* border-radius: 20px */
 }
+
 @media (max-width: 1200px) {
    .select_wrapper {
       margin: 20px 0;

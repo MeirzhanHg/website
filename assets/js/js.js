@@ -139,79 +139,78 @@ if (document.querySelector('canvas')) {
 
 
 // Slider
-const sliders = (slides, dir, prev, next) => {
-    let slideIndex = 1,
-        paused = false
+// const sliders = (slides, dir, prev, next) => {
+//     let slideIndex = 1,
+//         paused = false
 
-    const items = document.querySelectorAll(slides)
+//     const items = document.querySelectorAll(slides)
 
-    function showSlides(n) {
-        if (n > items.length) {
-            slideIndex = 1
-        }
+//     function showSlides(n) {
+//         if (n > items.length) {
+//             slideIndex = 1
+//         }
 
-        if (n < 1) {
-            slideIndex = items.length
-        }
+//         if (n < 1) {
+//             slideIndex = items.length
+//         }
 
-        items.forEach(item => {
-            item.classList.add('animated')
-            item.style.display = 'none'
-        })
+//         items.forEach(item => {
+//             item.classList.add('animated')
+//             item.style.display = 'none'
+//         })
 
-        items[slideIndex - 1].style.display = 'block'
-    }
+//         items[slideIndex - 1].style.display = 'block'
+//     }
 
-    showSlides(slideIndex)
+//     showSlides(slideIndex)
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n)
-    }
+//     function plusSlides(n) {
+//         showSlides(slideIndex += n)
+//     }
 
-    try {
-        const prevBtn = document.querySelector(prev),
-            nextBtn = document.querySelector(next)
+//     try {
+//         const prevBtn = document.querySelector(prev),
+//             nextBtn = document.querySelector(next)
 
-        prevBtn.addEventListener('click', () => {
-            plusSlides(-1)
-            items[slideIndex - 1].classList.remove('slideInLeft')
-            items[slideIndex - 1].classList.add('slideInRight')
-        })
+//         prevBtn.addEventListener('click', () => {
+//             plusSlides(-1)
+//             items[slideIndex - 1].classList.remove('slideInLeft')
+//             items[slideIndex - 1].classList.add('slideInRight')
+//         })
 
-        nextBtn.addEventListener('click', () => {
-            plusSlides(1)
-            items[slideIndex - 1].classList.remove('slideInRight')
-            items[slideIndex - 1].classList.add('slideInLeft')
-        })
-    } catch (e) { }
+//         nextBtn.addEventListener('click', () => {
+//             plusSlides(1)
+//             items[slideIndex - 1].classList.remove('slideInRight')
+//             items[slideIndex - 1].classList.add('slideInLeft')
+//         })
+//     } catch (e) { }
 
 
-    function activateAnimation() {
-        if (dir === 'vertical') {
-            paused = setInterval(function () {
-                plusSlides(1)
-                items[slideIndex - 1].classList.add('slideInDown')
-            }, 3000)
-        } else {
-            paused = setInterval(function () {
-                plusSlides(1)
-                items[slideIndex - 1].classList.remove('slideInRight')
-                items[slideIndex - 1].classList.add('slideInLeft')
-            }, 3000)
-        }
-    }
+//     function activateAnimation() {
+//         if (dir === 'vertical') {
+//             paused = setInterval(function () {
+//                 plusSlides(1)
+//                 items[slideIndex - 1].classList.add('slideInDown')
+//             }, 3000)
+//         } else {
+//             paused = setInterval(function () {
+//                 plusSlides(1)
+//                 items[slideIndex - 1].classList.remove('slideInRight')
+//                 items[slideIndex - 1].classList.add('slideInLeft')
+//             }, 3000)
+//         }
+//     }
 
-    // activateAnimation();
+//     // activateAnimation();
 
-    items[0].parentNode.addEventListener('mouseenter', () => {
-        clearInterval(paused)
-    })
+//     items[0].parentNode.addEventListener('mouseenter', () => {
+//         clearInterval(paused)
+//     })
 
-    items[0].parentNode.addEventListener('mouseleave', () => {
-        activateAnimation()
-    })
-}
-// sliders('.featured-inner', 'horizontal', '.prev-featured', '.next-featured')
+//     items[0].parentNode.addEventListener('mouseleave', () => {
+//         activateAnimation()
+//     })
+// }
 
 
 function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders) {
@@ -225,7 +224,6 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
         slidesToShow = 1
     }
 
-
     const slidesToScroll = 1
     const container = document.querySelector(containerSlider)
     const track = document.querySelector(trackSlider)
@@ -237,90 +235,6 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
     const itemsCount = items.length
     const itemWidth = container.clientWidth / slidesToShow
     const movePosition = slidesToScroll * itemWidth
-
-    // ..............................
-    // let touchStartX = 0;
-    // let touchEndX = 0;
-    // let isDragging = false;
-    // let startX = 0;
-    // let endX = 0;
-
-
-    // let slideThreshold = 50; // Adjust this value as needed
-
-    // if (window.innerWidth <= 600) {
-    //     slideThreshold = Math.abs(touchStartX - touchEndX)
-    // }
-
-    // track.addEventListener('touchstart', (event) => {
-    //     console.log(slideThreshold);
-    //     touchStartX = event.touches[0].clientX;
-    // });
-
-    // track.addEventListener('touchmove', (event) => {
-    //     console.log(slideThreshold);
-    //     touchEndX = event.touches[0].clientX;
-    //     handleSwipe();
-    // });
-
-    // track.addEventListener('touchend', () => {
-    //     handleSwipeEnd();
-    // });
-
-    // track.addEventListener('mousedown', (event) => {
-    //     isDragging = true;
-    //     startX = event.clientX;
-    //     track.style.cursor = 'grabbing';
-    // });
-
-    // track.addEventListener('mousemove', (event) => {
-    //     if (!isDragging) return;
-    //     endX = event.clientX;
-    //     handleDrag();
-    // });
-
-    // track.addEventListener('mouseup', () => {
-    //     isDragging = false;
-    //     handleSwipeEnd();
-    //     track.style.cursor = 'grab';
-    // });
-
-    // function handleSwipe() {
-    //     const swipeDistance = touchStartX - touchEndX;
-
-    //     if (Math.abs(swipeDistance) > slideThreshold) {
-    //         if (touchStartX > touchEndX) {
-    //             // Swipe left, move to next slide
-    //             moveSlide('next');
-    //         } else {
-    //             // Swipe right, move to previous slide
-    //             moveSlide('prev');
-    //         }
-    //     }
-    // }
-
-    // function handleSwipeEnd() {
-    //     isDragging = false;
-    //     startX = 0;
-    //     endX = 0;
-    //     track.style.cursor = 'grab';
-    // }
-
-    // function handleDrag() {
-    //     const dragDistance = endX - startX;
-    //     if (Math.abs(dragDistance) > slideThreshold) {
-    //         if (dragDistance < 0) {
-    //             // Drag left, move to next slide
-    //             moveSlide('next');
-    //         } else {
-    //             // Drag right, move to previous slide
-    //             moveSlide('prev');
-    //         }
-
-    //         startX = endX;
-    //     }
-    // }
-
 
     let touchStartX = 0
     let touchEndX = 0
@@ -406,14 +320,11 @@ function sliderMore(containerSlider, trackSlider, prevSlide, nextSlide, sliders)
 }
 
 if (document.querySelector('.slider-container-sale')) {
-
     sliderMore('.slider-container-sale', '.sale-slider-track', '.prev-sale', '.next-sale', '.sale-slide')
-
 }
 
 if (document.querySelector('.slider-container-rent')) {
     sliderMore('.slider-container-rent', '.rent-slider-track', '.prev-rent', '.next-rent', '.rent-slide')
-
 }
 
 if (document.querySelector('.slider-container-lifestyle')) {
@@ -519,9 +430,6 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
                 sliderList.classList.remove('grab')
                 sliderList.classList.add('grabbing')
             }
-
-
-
         },
 
         swipeAction = function () {
@@ -616,10 +524,6 @@ function sliderCont(sliderContent, sliderListElem, trackSlider, slideItem, arrow
             } else {
                 allowSwipe = true
             }
-
-
-
-
         },
 
         setTransform = function (transform, comapreTransform) {
@@ -674,13 +578,10 @@ if (document.querySelector('.slider-featured')) {
 
     sliderCont('.slider-news', '.news-slider-list', '.news-slider-track', '.news-inner', '.news-arrow', '.prev-news', '.next-news')
 }
+
 if (document.querySelector('.project_slide')) {
-
-    sliderCont('.project_slide',
-        '.project_slide-list', '.project_slide-track', '.project_slide-inner', '.project_slide-nav', '.prev-project_slide', '.next-project_slide')
+    sliderCont('.project_slide', '.project_slide-list', '.project_slide-track', '.project_slide-inner', '.project_slide-nav', '.prev-project_slide', '.next-project_slide')
 }
-
-
 
 if (document.querySelector('.slider-area')) {
     sliderCont('.slider-area', '.area-slider-list', '.area-slider-track', '.area-wrapper', '.area-arrow', '.prev-area', '.next-area')
@@ -691,6 +592,7 @@ if (document.querySelector('.slider_service')) {
 }
 
 
+// Слайдер при мобилке
 const debounce = (callback, delay) => {
     let timeout = null
 
@@ -759,10 +661,7 @@ const accordion = (triggersSelector) => {
         })
 
         btns.forEach(btn => {
-
-
             if (btn.classList.contains('active-style')) {
-                console.log('aaa')
                 btn.nextElementSibling.style.maxHeight = btn.nextElementSibling.scrollHeight + 80 + 'px'
             } else {
                 btn.nextElementSibling.style.maxHeight = '0px'
@@ -777,7 +676,6 @@ const accordion = (triggersSelector) => {
 if (document.querySelector('.faq-heading')) {
     accordion('.faq-heading')
 }
-
 
 
 
@@ -1013,4 +911,3 @@ window.addEventListener('scroll', function () {
     })
 })
 // END Fixed menu top
-
