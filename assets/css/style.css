@@ -4626,11 +4626,27 @@ body .menu__list > li .menu__arrow {
    padding: 100px 50px;
    transition: right 0.3s ease 0s;
    overflow: auto;
+   overflow-y: scroll;
+   
 }
 .menu__body._active {
    display: block;
    right: 0px;
    animation: opac 0.6s;
+}
+
+.menu__body::-webkit-scrollbar {
+   width: 10px; /* Ширина полосы прокрутки */
+}
+
+.menu__body::-webkit-scrollbar-thumb {
+   background-color: white; /* Цвет полосы прокрутки */
+}
+
+/* Для Firefox */
+.menu__body {
+   scrollbar-width: thin; /* Ширина полосы прокрутки */
+   scrollbar-color: white transparent; /* Цвет полосы прокрутки */
 }
 
 @keyframes opac {

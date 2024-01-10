@@ -719,22 +719,18 @@ const filter = () => {
     })
 }
 
-
 if (document.querySelector('.area_map')) {
     filter()
 }
 
 
+// Video iphone
 if (document.querySelector('video')) {
-    var myVideo = document.querySelectorAll("video")
+    let myVideo = document.querySelectorAll("video")
 
     function playPause() {
         myVideo.forEach(video => {
-            if (video.paused) {
-                video.play()
-            } else {
-                video.pause()
-            }
+           video.play()
         })
     }
 
@@ -742,7 +738,7 @@ if (document.querySelector('video')) {
 }
 
 
-
+// Калькулятор
 function calculate() {
     const amount = parseFloat(document.getElementById('amount').value)
     const years = parseInt(document.getElementById('years').value)
@@ -761,12 +757,9 @@ function calculate() {
     const monthlyPayment = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalPayments)) /
         (Math.pow(1 + monthlyInterestRate, totalPayments) - 1)
 
-
-
     priceSum.textContent = monthlyPayment.toFixed(2)
-
-
 }
+
 
 document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelector('#years')) {
@@ -833,29 +826,6 @@ function calcScroll() {
 // Меню бургер
 
 
-const scroll = calcScroll()
-
-let menuArrows = document.querySelectorAll('.menu__bottom');
-
-if (menuArrows.length > 0) {
-    for (let index = 0; index < menuArrows.length; index++) {
-        const menuArrow = menuArrows[index];
-
-        menuArrow.addEventListener("click", function (e) {
-            document.body.style.marginRight = `${scroll}px`;
-
-            // Закрываем все открытые элементы, кроме текущего
-            menuArrows.forEach((element) => {
-                if (element !== menuArrow && element.classList.contains('_active')) {
-                    element.classList.remove('_active');
-                }
-            });
-
-            // Переключаем класс '_active' для текущего элемента
-            menuArrow.classList.toggle('_active');
-        });
-    }
-}
 
 const iconMenu = document.querySelector('.menu-cta')
 const menuBody = document.querySelector('.menu__body')
@@ -868,6 +838,33 @@ if (iconMenu) {
 
     })
 }
+
+
+
+// const scroll = calcScroll()
+
+
+let menuArrows = document.querySelectorAll('.menu__bottom')
+
+if (menuArrows.length > 0) {
+    for (let index = 0; index < menuArrows.length; index++) {
+        const menuArrow = menuArrows[index]
+
+        menuArrow.addEventListener("click", function (e) {
+
+            // Закрываем все открытые элементы, кроме текущего
+            menuArrows.forEach((element) => {
+                if (element !== menuArrow && element.classList.contains('_active')) {
+                    element.classList.remove('_active')
+                }
+            })
+
+            // Переключаем класс '_active' для текущего элемента
+            menuArrow.classList.toggle('_active')
+        })
+    }
+}
+
 // END Меню бургер
 
 
