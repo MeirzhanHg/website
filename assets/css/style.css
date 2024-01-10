@@ -110,7 +110,7 @@ p {
 .menu_btns {
    display: flex;
    align-items: center;
-   column-gap: 25px
+   column-gap: 25px;
 }
 .menu__icon-whatsapp {
    text-transform: uppercase;
@@ -193,14 +193,13 @@ p {
    .menu_header.fixed .menu_wrapper {
       padding: 25px;
    }
-   
 }
 @media (max-width: 500px) {
    .ico-whatsapp {
       display: none;
    }
    .menu_btns {
-      column-gap: 10px
+      column-gap: 10px;
    }
 }
 /****************** Home Intro***************/
@@ -3938,7 +3937,6 @@ button {
    }
 }
 
-
 /********* cpllc-project -> project slide **********/
 
 .project_slide {
@@ -4627,7 +4625,6 @@ body .menu__list > li .menu__arrow {
    transition: right 0.3s ease 0s;
    overflow: auto;
    overflow-y: scroll;
-   
 }
 .menu__body._active {
    display: block;
@@ -4636,7 +4633,7 @@ body .menu__list > li .menu__arrow {
 }
 
 .menu__body::-webkit-scrollbar {
-   width: 10px; /* Ширина полосы прокрутки */
+   width: 5px; /* Ширина полосы прокрутки */
 }
 
 .menu__body::-webkit-scrollbar-thumb {
@@ -4651,13 +4648,12 @@ body .menu__list > li .menu__arrow {
 
 @keyframes opac {
    from {
-     right: -100%;
+      right: -100%;
    }
    to {
-     right: 0;
+      right: 0;
    }
- }
-
+}
 
 .menu__list > li {
    flex-wrap: wrap;
@@ -4777,8 +4773,21 @@ body .menu__list > li .menu__arrow {
       z-index: 2;
       animation: opac 1s;
    }
-}
+   .menu__body {
+      overflow-y: auto; /* Вернуть стандартный скролл для мобильных устройств */
+   }
 
+   /* Убрать кастомный скролл только для мобильных устройств */
+   .menu__body::-webkit-scrollbar,
+   .menu__body::-webkit-scrollbar-thumb {
+      display: none;
+   }
+
+   .menu__body {
+      scrollbar-width: auto; /* Сбросить кастомную ширину скролла для Firefox */
+      scrollbar-color: auto; /* Сбросить кастомный цвет скролла для Firefox */
+   }
+}
 
 /********************* Select Custom*********/
 .select_wrapper {
