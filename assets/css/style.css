@@ -193,9 +193,16 @@ p {
    .menu_header.fixed .menu_wrapper {
       padding: 25px;
    }
-
+   
 }
-
+@media (max-width: 500px) {
+   .ico-whatsapp {
+      display: none;
+   }
+   .menu_btns {
+      column-gap: 10px
+   }
+}
 /****************** Home Intro***************/
 .intro {
    display: flex;
